@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/visitor.css">
     <script src="js/gusetboard.js"></script>
+    <link rel="stylesheet" href="css/guestboard.css">
 </head>
 <body>
 <div class="desk-wrapper">
