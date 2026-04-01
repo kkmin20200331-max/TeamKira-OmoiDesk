@@ -46,11 +46,14 @@
                 <div class="visitor">Today 15 | Total 1,234</div>
             </div>
 
-            <jsp:include page="${content}"></jsp:include>
+<%--            <jsp:include page="${content}"></jsp:include>--%>
 
+            <iframe id="notebook-frame"
+                    src="/home-body"
+                    frameborder="0">
+            </iframe>
 
-
-                </div>
+        </div>
             </div>
         </div>
 
@@ -85,7 +88,9 @@
                 <!-- 화면: YouTube iframe -->
                 <div class="phone-screen">
                     <!-- YT IFrame API가 이 div를 iframe으로 교체 -->
-                    <div id="yt-player"></div>
+                    <div id="yt-player">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiYapiOg0bGxys9KbUX99TnjvcgYRuFd0TGA&s">
+                    </div>
 
                     <!-- 유튜브 바로가기 링크 -->
                     <a id="yt-link" href="#" target="_blank" class="phone-yt-link">
