@@ -7,42 +7,63 @@ import javax.servlet.http.HttpServletRequest;
 public class DiaryM {
 
     public static void getCalendar(HttpServletRequest req) {
-        // 1. 날짜 계산기 꺼내기
+        // 1. 기본값 세팅 (에러 방지용 초기화)
         Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
+        int curYear = cal.get(Calendar.YEAR);
+        int curMonth = cal.get(Calendar.MONTH); // 0~11
+        String showMode = "calendar";
+        String selectedDay = "";
+        ArrayList<String> posts = new ArrayList<>();
 
-        // 이번 달 1일로 설정
-        cal.set(year, month, 1);
-        int startDay = cal.get(Calendar.DAY_OF_WEEK); // 1일의 요일 (1~7)
-        int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        try {
+            // 2. 파라미터 받기
+            String y = req.getParameter("y");
+            String m = req.getParameter("m");
+            String d = req.getParameter("d");
+            String mode = req.getParameter("mode");
 
-        // 바구니에 담기 (JSP에서 쓸 변수들)
-        req.setAttribute("startDay", startDay);
-        req.setAttribute("lastDay", lastDay);
-        req.setAttribute("curYear", year);
-        req.setAttribute("curMonth", month + 1);
+            // 3. 년/월 계산
+            if (y != null && m != null) {
+                curYear = Integer.parseInt(y);
+                curMonth = Integer.parseInt(m) - 1;
+            }
+            cal.set(curYear, curMonth, 1);
 
-        // 2. 파라미터 확인 (날짜 d, 모드 mode)
-        String d = req.getParameter("d");
-        String mode = req.getParameter("mode");
+            // Calendar가 자동 보정한 값을 다시 가져옴
+            curYear = cal.get(Calendar.YEAR);
+            curMonth = cal.get(Calendar.MONTH);
 
-        if ("write".equals(mode)) {
-            // [글쓰기 화면]
-            req.setAttribute("showMode", "write");
-            req.setAttribute("selectedDay", d);
-        } else if (d != null) {
-            // [목록 보기 화면]
-            req.setAttribute("showMode", "list");
-            req.setAttribute("selectedDay", d);
+            int startDay = cal.get(Calendar.DAY_OF_WEEK);
+            int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-            // 임시 데이터 (DB 연동 전까지 목록이 나오는지 확인용)
-            ArrayList<String> posts = new ArrayList<>();
-            posts.add(d + "일에 쓴 첫 번째 일기입니다.");
-            posts.add(d + "일에 쓴 두 번째 일기입니다.");
+            // 4. 모드 결정
+            if ("write".equals(mode)) {
+                showMode = "write";
+                selectedDay = (d != null) ? d : "";
+            } else if (d != null) {
+                showMode = "list";
+                selectedDay = d;
+                posts.add(curYear + "년 " + (curMonth + 1) + "월 " + d + "일의 기록");
+            }
+
+            // 5. 모든 값을 request에 담기 (하나라도 빠지면 JSP에서 null 터짐)
+            req.setAttribute("startDay", startDay);
+            req.setAttribute("lastDay", lastDay);
+            req.setAttribute("curYear", curYear);
+            req.setAttribute("curMonth", curMonth + 1);
+            req.setAttribute("selectedDay", selectedDay);
+            req.setAttribute("showMode", showMode);
             req.setAttribute("posts", posts);
-        } else {
-            // [기본 달력 화면]
+
+            // 화살표 링크용
+            req.setAttribute("prevYear", (curMonth == 0) ? curYear - 1 : curYear);
+            req.setAttribute("prevMonth", (curMonth == 0) ? 12 : curMonth);
+            req.setAttribute("nextYear", (curMonth == 11) ? curYear + 1 : curYear);
+            req.setAttribute("nextMonth", (curMonth == 11) ? 1 : curMonth + 2);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 에러 발생 시 기본값이라도 나오게 세팅
             req.setAttribute("showMode", "calendar");
         }
     }
