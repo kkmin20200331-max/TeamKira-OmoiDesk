@@ -13,18 +13,18 @@
         <button class="write-btn">기록</button>
     </div>
 
-    <div class="posts">
-        <div class="post-item">
-            <div class="post-header">
-                <span class="post-user">DongMin</span>
-                <span class="post-date">2026.03.31</span>
-            </div>
-            <div class="post-text">
-                기능 구현 준비 완료! 이 자리에 DB 데이터를 뿌려주세요. 😊
+        <div class="posts">
+            <div class="post-item">
+                <div class="post-header">
+                    <span class="post-user">DongMin</span>
+                    <span class="post-date">2026.03.31</span>
+                </div>
+                <div class="post-text">
+                    기능 구현 준비 완료! 이 자리에 DB 데이터를 뿌려주세요. 😊
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 </body>
