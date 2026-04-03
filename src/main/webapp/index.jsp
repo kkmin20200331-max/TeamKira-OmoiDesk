@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="js/guestboard.js"></script>
     <link rel="stylesheet" href="css/visitor.css">
-    <script src="js/guestboard.js"></script>
     <link rel="stylesheet" href="css/guestboard.css">
     <%-- defer로 통일, 중복 스크립트 제거 --%>
     <script defer src="/js/minihome.js"></script>
