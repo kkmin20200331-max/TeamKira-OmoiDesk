@@ -21,8 +21,9 @@ public class DiaryC extends HttpServlet {
         // 브라우저에게 "이건 JSON 데이터야" 라고 알려줌
         response.setContentType("application/json; charset=UTF-8");
 
-        // DAO에서 가져온 JSON 문자열을 그대로 출력
-        response.getWriter().print(GuestBoardDAO.GBDAO.showGuestBoard(request, response));
+        DiaryM.getCalendar(request);
+        request.getRequestDispatcher("/diary/diary.jsp").forward(request, response);
+
     }
 
     public void destroy() {
