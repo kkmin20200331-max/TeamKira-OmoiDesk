@@ -2,10 +2,7 @@ package com.kira.pj.main;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBManager {
     private static BasicDataSource dataSource;
@@ -23,6 +20,13 @@ public class DBManager {
     public static Connection connect() throws SQLException {
         return dataSource.getConnection();
     }
+
+    public static Connection connection() throws SQLException {
+         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@10.1.82.127:1521:XE", "c##kira", "kira1004");
+        System.out.println("connect??????????");
+         return conn;
+    }
+
     public static void close(Connection con, PreparedStatement ps, ResultSet rs) {
         try {
             if (rs != null) {

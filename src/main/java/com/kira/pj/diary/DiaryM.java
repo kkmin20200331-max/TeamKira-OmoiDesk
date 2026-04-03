@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 
 public class DiaryM {
 
+
     public static void getCalendar(HttpServletRequest req) {
+
         // 1. 현재 날짜 구하기
         Calendar cal = Calendar.getInstance();
 
@@ -57,6 +59,9 @@ public class DiaryM {
             req.setAttribute("posts", posts);
         } else {
             req.setAttribute("showMode", "calendar");
+
         }
     }
 }
+
+
