@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", function () {
+
+
 // 현재 페이지 상태 저장
 let globalCurrentPage = 1;
 
@@ -135,3 +138,4 @@ function goToMinihome(targetId) {
     // 방법 2. 현재 창 안에서 전체 껍데기를 그 사람의 데이터로 갈아끼우기
     // location.href = `/main?id=${targetId}`;
 }
+});

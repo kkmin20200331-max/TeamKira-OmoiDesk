@@ -17,14 +17,14 @@ pageEncoding="UTF-8" %>
     <link rel="stylesheet" href="css/guestboard.css" />
     <link rel="stylesheet" href="css/diary.css" />
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/search.css" />
 
     <%-- JS --%>
     <script src="js/guestboard.js"></script>
     <script src="js/diary.js"></script>
     <script src="js/index.js"></script>
     <script src="js/visitor.js"></script>
-    <script defer src="/js/minihome.js"></script>
-    <script defer src="/js/ajax.js"></script>
+    <script defer src="js/ajax.js"></script>
     <script defer src="js/main.js"></script>
 
     <title>Team Kira - Minihompy</title>
