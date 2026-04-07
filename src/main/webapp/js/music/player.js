@@ -201,8 +201,8 @@ if (window.YT && window.YT.Player) {
 }
 
 // ── 페이지 이탈 직전 현재 곡/재생 위치 저장 ──────────────────────
-window.addEventListener('pageshow', function (event){
-    if (event.persisted){
+window.addEventListener('pageshow', function (event) {
+    if (event.persisted) {
         playerReady = false;
         ytPlayer = null;
 
