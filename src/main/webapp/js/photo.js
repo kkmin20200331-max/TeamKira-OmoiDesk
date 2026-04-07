@@ -291,21 +291,7 @@ function previewAddImage(event) {
     preview.src = URL.createObjectURL(file);
     preview.style.display = 'block';
 }
-// async function addPhoto() {
-//     const data = await uploadSupabase();
-//     console.log(data.url)
-//     const title   = document.getElementById('addTitle').value.trim();
-//     const content = document.getElementById('addContent').value.trim();
-//     const formData = new FormData();
-//     formData.append('title', title);
-//     formData.append('content', content);
-//     formData.append('url', data.url);
-//
-//
-//
-//
-//
-// }
+
 async function addPhoto() {
     const title   = document.getElementById('addTitle').value.trim();
     const content = document.getElementById('addContent').value.trim();
@@ -340,7 +326,7 @@ async function addPhoto() {
             alert('사진이 성공적으로 등록되었습니다!');
             // 데이터를 받아와서 렌더링하는 함수 호출
             // (renderFeedView가 전역 데이터를 쓰는지, 인자를 받는지에 따라 맞게 사용하세요)
-            renderFeedView();
+            loadPhoto()
         } else {
             alert('DB 저장에 실패했습니다.');
         }
@@ -349,8 +335,6 @@ async function addPhoto() {
         alert('서버 통신 중 오류가 발생했습니다.');
     }
 }
-
-
 
 async function uploadSupabase() {
     const fileInput = document.getElementById('addImgFile');
