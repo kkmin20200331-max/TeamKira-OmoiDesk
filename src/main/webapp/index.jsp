@@ -248,5 +248,6 @@
 <script src="https://www.youtube.com/iframe_api"></script>
 <script src="js/music/player.js"></script>
 <script src="js/music/router.js"></script>
+<script src="js/photo.js"></script>
 </body>
 </html>
