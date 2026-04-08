@@ -135,7 +135,7 @@
                 </div>
                 <div
                         class="nb-tab ${content eq 'photo/photo.jsp' ? 'active' : ''}"
-                        data-src="/photo?ajax=true"
+                        data-src="photo/photo.jsp"
                 >
                     사진첩
                 </div>
