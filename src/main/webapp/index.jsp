@@ -241,7 +241,8 @@
 
 <script>
     // 로그인 시 u_id, 비로그인 시 null
-    const loginUserId = "${not empty sessionScope.loginUser ? sessionScope.loginUser.u_id : ''}";
+    const loginUserId = "${sessionScope.loginUserId}";
+    const loginUserPk = "${sessionScope.loginUserPk}";
 </script>
 
 <div id="yt-player-hidden" style="display: none"></div>
