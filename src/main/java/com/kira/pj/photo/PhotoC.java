@@ -25,10 +25,10 @@ public class PhotoC extends HttpServlet {
     }
 
     public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
     }
 
     public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        response.getWriter().println(PhotoDAO.PDAO.deletePhoto(request));
 
     }
 

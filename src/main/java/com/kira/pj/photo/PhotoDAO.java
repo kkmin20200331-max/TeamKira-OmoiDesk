@@ -48,8 +48,6 @@ public class PhotoDAO {
     }
 
     public int updatePhoto(HttpServletRequest request) {
-
-
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         String imgName = request.getParameter("imgName");
@@ -65,11 +63,7 @@ public class PhotoDAO {
             ps.setString(2, imgName);
             ps.setString(3, title);
             ps.setString(4, content);
-
-
             return ps.executeUpdate();
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,6 +72,30 @@ public class PhotoDAO {
             DBManager.close(conn, ps, null);
         }
         return 0;
+    }
+
+    public int deletePhoto(HttpServletRequest request) {
+        String imgName = request.getParameter("imgName");
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        String sql = "delete from photo where img_name = ? and user_id = ?";
+        try {
+            conn = DBManager.connect();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, imgName);
+            HttpSession session = request.getSession();
+            ps.setString(2, session.getAttribute("loginUserId").toString());
+            return ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            DBManager.close(conn, ps, null);
+        }
+        return 0;
+
     }
 }
 
