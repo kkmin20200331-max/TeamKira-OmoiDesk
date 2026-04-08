@@ -45,37 +45,37 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(error => console.error("Error:", error));
         }
     });
-// 3. 방명록 목록 불러오기 (GET 비동기)
+});
 
 // 2. 방명록 목록 불러오기 (GET 비동기)
-    function fetchVisitors(page) {
-        if (!currentOwnerPk) return;
+function fetchVisitors(page) {
+    if (!currentOwnerPk) return;
 
-        // [핵심 수정] URL 끝에 &ownerPk=현재주인 식별자를 반드시 붙여서 보낸다.
-        fetch(`visitor?reqType=json&p=${page}&ownerPk=${currentOwnerPk}`)
-            .then(response => {
-                if (!response.ok) throw new Error("서버 응답 오류");
-                return response.json();
-            })
-            .then(data => {
-                globalCurrentPage = data.currentPage || page;
-                renderPosts(data.visitorList);
-                renderPaging(data.visitorList, globalCurrentPage);
-            })
-            .catch(error => console.error("방명록 로딩 실패:", error));
-    }
+    // [핵심 수정] URL 끝에 &ownerPk=현재주인 식별자를 반드시 붙여서 보낸다.
+    fetch(`visitor?reqType=json&p=${page}&ownerPk=${currentOwnerPk}`)
+        .then(response => {
+            if (!response.ok) throw new Error("서버 응답 오류");
+            return response.json();
+        })
+        .then(data => {
+            globalCurrentPage = data.currentPage || page;
+            renderPosts(data.visitorList);
+            renderPaging(data.visitorList, globalCurrentPage);
+        })
+        .catch(error => console.error("방명록 로딩 실패:", error));
+}
 
 // 3. 방명록 삭제
     function deleteVisitor(vId) {
         if (!confirm('삭제하시겠습니까?')) return;
 
-        fetch(`visitorDel?vId=${vId}`, {method: "GET"})
-            .then(response => {
-                if (response.ok) fetchVisitors(globalCurrentPage);
-                else alert("삭제에 실패했습니다.");
-            })
-            .catch(error => console.error("Error:", error));
-    }
+    fetch(`visitorDel?vId=${vId}`, {method: "GET"})
+        .then(response => {
+            if (response.ok) fetchVisitors(globalCurrentPage);
+            else alert("삭제에 실패했습니다.");
+        })
+        .catch(error => console.error("Error:", error));
+}
 
 // --- UI 함수들 ---
     function renderPosts(visitorList) {
@@ -219,9 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 // 페이지 최초 로드 시 실행
-    document.addEventListener("DOMContentLoaded", function () {
-        loadRecentVisitors();
-        // 참고: 탭 이동 시 fetchVisitors(1)이 호출되도록 HTML 구조가 잡혀 있어야 함.
-    });
-
+document.addEventListener("DOMContentLoaded", function () {
+    loadRecentVisitors();
+    // 참고: 탭 이동 시 fetchVisitors(1)이 호출되도록 HTML 구조가 잡혀 있어야 함.
 });
