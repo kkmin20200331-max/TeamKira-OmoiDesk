@@ -17,7 +17,14 @@
                     <input type="hidden" name="d_date" value="${selectedDay}">
 
                     <input name="d_title" placeholder="제목을 입력하세요" style="width:100%; padding:15px; border:none; border-bottom:2px solid #f7cfcd; font-family:'Gaegu'; font-size:22px; outline:none; box-sizing: border-box;">
-
+                    <div style="padding: 0 15px;">
+                        <span style="font-family:'Gaegu'; font-size:20px; color:#555; margin-right:10px;">공개 설정:</span>
+                        <select name="d_visibility" style="padding:5px; border:1px solid #f7cfcd; border-radius:5px; font-family:'Gaegu'; font-size:18px; outline:none;">
+                            <option value="2" selected>🌍 전체 공개</option>
+                            <option value="1">👥 친구 공개</option>
+                            <option value="0">🔒 나만 보기</option>
+                        </select>
+                    </div>
                     <textarea name="d_txt" placeholder="내용을 입력하세요..." style="width:100%; height:250px; border:none; padding:15px; font-family:'Gaegu'; font-size:20px; outline:none; resize:none; box-sizing: border-box;"></textarea>
 
                     <div style="text-align:right;">
@@ -45,7 +52,14 @@
 
                         <%-- 기존 제목이 미리 적혀있게 value 속성 추가 --%>
                     <input name="d_title" value="${diary.title}" placeholder="제목을 입력하세요" style="width:100%; padding:15px; border:none; border-bottom:2px solid #f7cfcd; font-family:'Gaegu'; font-size:22px; outline:none; box-sizing: border-box;">
-
+                            <div style="padding: 0 15px;">
+                                <span style="font-family:'Gaegu'; font-size:20px; color:#555; margin-right:10px;">공개 설정:</span>
+                                <select name="d_visibility" style="padding:5px; border:1px solid #f7cfcd; border-radius:5px; font-family:'Gaegu'; font-size:18px; outline:none;">
+                                    <option value="2" ${diary.visibility == 2 ? 'selected' : ''}>🌍 전체 공개</option>
+                                    <option value="1" ${diary.visibility == 1 ? 'selected' : ''}>👥 친구 공개</option>
+                                    <option value="0" ${diary.visibility == 0 ? 'selected' : ''}>🔒 나만 보기</option>
+                                </select>
+                            </div>
                         <%-- 기존 내용이 미리 적혀있게 태그 사이에 내용 추가 --%>
                     <textarea name="d_txt" placeholder="내용을 입력하세요..." style="width:100%; height:250px; border:none; padding:15px; font-family:'Gaegu'; font-size:20px; outline:none; resize:none; box-sizing: border-box;">${diary.txt}</textarea>
 

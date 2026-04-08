@@ -15,4 +15,5 @@ public class DiaryDTO {
     private String title;
     private String txt;
     private Date created_at;
+    private int visibility;
 }
