@@ -358,3 +358,42 @@ body {
 }
 
 .bgm-modal-submit:hover { background: linear-gradient(135deg, #f7cfcd, #ee99aa55); }
+
+/* ── 재생목록 헤더 (더미/개인 구분) ── */
+.bgm-queue-header {
+    padding: 4px 2px 6px;
+}
+
+.bgm-queue-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bgm-queue-status.default {
+    color: #b0a090;
+}
+
+.bgm-queue-status.personal {
+    color: #c07878;
+}
+
+.bgm-queue-status-label {
+    font-family: "Nanum Pen Script", cursive;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.bgm-queue-hint {
+    font-size: 11px;
+    color: #c8b8a8;
+}
+
+.bgm-queue-count {
+    font-size: 11px;
+    background: rgba(238, 153, 170, 0.15);
+    color: #ee99aa;
+    padding: 1px 8px;
+    border-radius: 20px;
+    border: 1px solid #f2c0bd;
+}
