@@ -86,7 +86,7 @@ document.addEventListener('click', e => {
             target.classList.contains('menu-item') ||
         target.classList.contains('phone-screen') ||
         target.classList.contains('phone-home') ||
-        target.id === 'bgm-title')
+        target.id === 'bgm-title-phone')
     ) {
         e.preventDefault();
         switchTab(target.dataset.src);

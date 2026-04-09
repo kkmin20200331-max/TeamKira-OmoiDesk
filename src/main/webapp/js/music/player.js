@@ -73,7 +73,7 @@ function updateIndexNowPlaying() {
 
   const ytLink = document.getElementById("yt-link");
   const bgmTitleMp3 = document.getElementById("bgm-title-mp3");
-  const bgmTitlePhone = document.getElementById("bgm-title-phone");
+  // const bgmTitlePhone = document.getElementById("bgm-title-phone");
 
   // ✅ 썸네일 업데이트 (메인과 배경 둘 다)
   if (phoneThumb) phoneThumb.src = thumbUrl;
@@ -82,7 +82,7 @@ function updateIndexNowPlaying() {
   if (ytLink)
     ytLink.href = "https://www.youtube.com/watch?v=" + track.youtubeId;
   if (bgmTitleMp3) bgmTitleMp3.textContent = "♪ " + track.title;
-  if (bgmTitlePhone) bgmTitlePhone.textContent = "♪ " + track.title;
+  // if (bgmTitlePhone) bgmTitlePhone.textContent = "♪ " + track.title;
 
   const cur =
     ytPlayer && typeof ytPlayer.getCurrentTime === "function"
