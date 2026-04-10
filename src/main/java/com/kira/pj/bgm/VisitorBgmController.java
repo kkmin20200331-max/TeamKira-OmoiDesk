@@ -1,6 +1,7 @@
 package com.kira.pj.bgm;
 
 import com.google.gson.Gson;
+import com.kira.pj.user.UserDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,12 +20,20 @@ public class VisitorBgmController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json;charset=UTF-8");
-        String ownerPk = req.getParameter("ownerPk");
 
-        // DAO에서 가져온 리스트 (이미 VO 안에 userNickname이 채워져 있음)
-        List<BgmTrackVO> list = BgmDAO.MDAO.getTracksByUser(ownerPk);
+        String inputVal = req.getParameter("ownerPk");
 
-        // 그대로 JSON 전송
+        // 1. ID를 PK로 변환 (질문자님의 DAO 함수 활용)
+        String realPk = UserDAO.DAO.getPkById(inputVal);
+
+        // 2. 검색 결과가 없으면(이미 PK거나 없는 ID) 원본값 사용
+        if (realPk == null) {
+            realPk = inputVal;
+        }
+
+        // 3. 확실해진 PK로 목록 조회
+        List<BgmTrackVO> list = BgmDAO.MDAO.getTracksByUser(realPk);
+
         resp.getWriter().print(new Gson().toJson(list));
     }
 }
