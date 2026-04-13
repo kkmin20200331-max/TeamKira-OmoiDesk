@@ -79,28 +79,39 @@ document.addEventListener('click', e => {
     ) {
         e.preventDefault();
 
-        // ✅ bgm-title-phone: 내 재생목록 — sessionStorage는 유지
+        // 1. bgm-title-phone (언제나 "내" 플레이리스트)
         if (target.id === 'bgm-title-phone') {
+            e.preventDefault();
             switchTab(target.dataset.src);
             if (typeof loadPlaylist === 'function') {
-                loadPlaylist(window.loginUserPk || '');  // 내 PK 직접 지정
+                loadPlaylist(null); // 인자를 비워서 내 서블릿(/api/bgm) 호출
             }
             return;
         }
 
-// ✅ phone-home: 페이지 주인 재생목록
+        // 2. phone-home (방문한 "페이지 주인"의 플레이리스트)
         if (target.classList.contains('phone-home')) {
-            const currentHostId = sessionStorage.getItem('currentHostId');
-            const targetPk = (currentHostId && currentHostId !== String(window.loginUserPk))
-                ? currentHostId
-                : (window.loginUserPk || '');
+            e.preventDefault();
+
+            const currentHostId = sessionStorage.getItem('currentHostId'); // null일 수 있음
+            const myId = window.loginUserId;
+
             switchTab(target.dataset.src);
+
             if (typeof loadPlaylist === 'function') {
-                loadPlaylist(targetPk);
+                // 🚩 [수정] 가려는 곳이 없거나(null), 내 아이디와 같다면 주인 모드!
+                if (!currentHostId || currentHostId === myId) {
+                    console.log("✅ [주인 모드] 초기 상태 또는 본인 확인");
+                    loadPlaylist(null);
+                } else {
+                    console.log("❌ [방문자 모드] 타인 확인:", currentHostId);
+                    loadPlaylist(currentHostId);
+                }
             }
             return;
         }
 
+        // 기타 일반 탭 이동 로직...
         switchTab(target.dataset.src);
     }
 });
