@@ -16,7 +16,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f3e5dc;
+
+    /* 🌟 바탕색과 그라데이션을 테마 변수로 교체! */
+    background-color: var(--bg-base);
     background-image: repeating-linear-gradient(
             90deg,
             rgba(160, 130, 100, 0.03) 0px,
@@ -26,16 +28,15 @@ body {
     ),
     radial-gradient(
             circle at 70% 30%,
-            rgba(210, 180, 140, 0.15) 0%,
+            rgba(210, 180, 140, 0.05) 0%,
             transparent 60%
     ),
-    radial-gradient(
-            circle at 20% 80%,
-            rgba(210, 180, 140, 0.1) 0%,
-            transparent 50%
-    ),
-    linear-gradient(180deg, #f3e5dc 0%, #e2d2c2 100%);
+    linear-gradient(180deg, var(--bg-base) 0%, var(--bg-grad) 100%);
+
     position: relative;
+
+    /* 🌟 마법의 한 줄: 색상이 바뀔 때 0.5초 동안 부드럽게 스르륵 바뀜 */
+    transition: background-color 0.5s ease, background-image 0.5s ease;
 }
 
 body::after {
@@ -159,7 +160,7 @@ body::after {
 .profile-name {
     font-family: "Nanum Pen Script", cursive;
     font-size: 26px;
-    color: #7a6b5c;
+    color: var(--text-main);
     text-align: center;
     margin-bottom: 5px;
     position: relative;
@@ -177,7 +178,8 @@ body::after {
 
 .profile-mood {
     font-size: 13px;
-    color: #9a8b7a;
+    color: var(--text-main);
+    opacity: 0.8;
     text-align: center;
     line-height: 1.6;
 }
@@ -335,7 +337,7 @@ body::after {
 
 .visitor {
     font-size: 12px;
-    color: #aaa09a;
+    color: var(--text-sub);
     background: rgba(255, 255, 255, 0.6);
     padding: 4px 10px;
     border-radius: 20px;
@@ -434,7 +436,7 @@ body::after {
     padding: 8px 5px;
     font-family: "Gaegu", cursive;
     font-size: 18px;
-    color: #5a4a3a;
+    color: var(--text-main);
     outline: none;
     text-align: left;
 }
@@ -486,12 +488,12 @@ body::after {
 
 .post-date {
     font-size: 14px;
-    color: #c0b0a0;
+    color: var(--text-sub);
 }
 
 .post-text {
     font-size: 20px;
-    color: #5a4a3a;
+    color: var(--text-main);
     line-height: 1.7;
     max-height: 450px;
     overflow-y: auto;
@@ -622,7 +624,7 @@ body::after {
     z-index: 20;
     font-family: "Nanum Pen Script", cursive;
     font-size: 16px;
-    color: #6a5a3a;
+    color: var(--text-main);
     line-height: 1.5;
     border-radius: 2px;
     position: absolute;
@@ -782,7 +784,7 @@ body::after {
 
 .visitor-btn-card {
     background: #ffffff;
-    border: 1px solid #f2c0bd;
+    border: 1px solid var(--theme-border);
     border-radius: 12px;
     padding: 10px;
     display: flex;
@@ -813,7 +815,7 @@ body::after {
 .visitor-text {
     font-family: "Nanum Pen Script", cursive;
     font-size: 18px;
-    color: #8a7a78;
+    color: var(--text-main);
     font-weight: bold;
 }
 
@@ -1011,6 +1013,10 @@ body::after {
     --theme-menu-active: rgba(255, 182, 185, 0.4);
     --theme-menu-hover: rgba(255, 182, 185, 0.2);
     --theme-tape: rgba(255, 225, 225, 0.9);
+    --bg-base: #fff5f5;      /* 책상 뒤쪽 벽지 위쪽 색 */
+    --bg-grad: #fae3e3;      /* 책상 뒤쪽 벽지 아래쪽 색 */
+    --text-main: #6b5b5b;    /* 방명록/다이어리 본문 글씨색 (따뜻한 고동색) */
+    --text-sub: #d1b8b8;     /* 날짜, 방문자 수 등 서브 글씨색 */
 }
 
 /* 🌿 2. 밀키 민트
@@ -1024,6 +1030,10 @@ body.theme-mint {
     --theme-menu-active: rgba(130, 223, 182, 0.4);
     --theme-menu-hover: rgba(130, 223, 182, 0.2);
     --theme-tape: rgba(220, 244, 230, 0.9);
+    --bg-base: #f2fdf7;
+    --bg-grad: #e0f2e8;
+    --text-main: #4a6356;    /* 본문 글씨색 (차분한 진녹색) */
+    --text-sub: #a1c2b0;
 }
 
 /* 🍇 3. 라벤더 퍼플
@@ -1037,4 +1047,8 @@ body.theme-purple {
     --theme-menu-active: rgba(186, 163, 245, 0.4);
     --theme-menu-hover: rgba(186, 163, 245, 0.2);
     --theme-tape: rgba(236, 227, 255, 0.9);
+    --bg-base: #f9f7fc;
+    --bg-grad: #edeaf5;
+    --text-main: #59546b;    /* 본문 글씨색 (오묘한 다크 보라빛) */
+    --text-sub: #b8b0c9;
 }
