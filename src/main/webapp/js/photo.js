@@ -132,7 +132,7 @@ function buildFeedCard(item, index, isOwner) {
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                         </svg>
                         <span>댓글</span>
-                        <span id="comment-count-${index}" style="margin-left:2px;">0</span>
+                        <span id="comment-count-${index}">${item.comments ? item.comments.length : 0}</span>
                     </button>
                 </div>
             </div>
@@ -151,10 +151,12 @@ function buildFeedCard(item, index, isOwner) {
                         padding:6px 16px; background:#ffb3ba; color:#fff; border:none;
                         border-radius:20px; font-family:'Gaegu', cursive; cursor:pointer;">등록</button>
                 </div>
-                <div style="margin-top:15px; font-size:13px; color:#888;">
-                    <div style="padding:8px 0; border-bottom:1px dashed #eee;">아직 작성된 댓글이 없습니다.</div>
-                </div>
-            </div>
+                    <div style="margin-top:15px; font-size:13px; color:#888;">${item.comments && item.comments.length > 0 ? item.comments.map(c => 
+                    `<div style="padding:8px 0; border-bottom:1px dashed #eee;">
+                        <b>${c.userId}</b> : ${c.content}
+                    </div>`).join('')  : `<div style="padding:8px 0;">아직 작성된 댓글이 없222습니다.</div>`}
+                    </div>          
+                     </div>
         </div>
     </div>
     `;
